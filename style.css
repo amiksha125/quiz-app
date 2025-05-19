@@ -118,3 +118,16 @@ body{
 display: none; /* it is hidden for now */
 
 }
+
+/* add background for the correct and incorrect classes created at script.js selectAnswer(e) function */
+
+.correct{
+
+    background: #9aeabc;
+
+}
+
+.incorrect{
+
+    background: #ff9393;
+}

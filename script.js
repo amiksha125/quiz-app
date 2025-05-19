@@ -124,9 +124,41 @@ function resetState(){
     nextButton.style.display = "none";
 
     while(answerButton.firstChild){
-        answerButton.removeChild(answerButton.firstChild); // remove all the previous answers otherwise previous ques's ans will still be there.
+        answerButton.removeChild(answerButton.firstChild); // remove all the previous answers otherwise previous ques's ans buttons will still be there.
 
     }
+}
+
+
+function selectAnswer(e){
+    const selectedBtn = e.target;
+    const isCorrect = selectedBtn.dataset.correct == "true";
+
+    if(isCorrect){
+        selectedBtn.classList.add("correct");
+    } else {
+        selectedBtn.classList.add("incorrect");
+    }
+
+    // disable to select other answers when user choose one answer and display next button
+    // if incorrect show the correct answer
+    // for each button it will check dataset if its true then it will add class name correct
+    // if incorrect then it will show correct answer
+    // we cannotselect other option
+    //next button is enabled
+
+    // the below code is for the unchosen buttons if one of them is true and selected is false before 
+    //then it will become green by adding class correct.
+    //and choosing button is disabled and then next button is enabled
+    Array.from(answerButton.children).forEach(button => {
+        if(button.dataset.correct == "true"){
+            button.classList.add("correct");
+        }
+
+        button.disabled = true;
+    });
+
+    nextButton.style.display = "block";
 }
 
 startQuiz();
