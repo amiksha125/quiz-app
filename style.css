@@ -79,7 +79,7 @@ body{
 
 /* add hover effect to anser button */
 
-.btn:hover{
+.btn:hover:not([disabled]){ /* we must not get after selecting an option , add hover only when a btn is enabled*/
 
     background-color: #001e4d;
 
@@ -87,6 +87,9 @@ body{
 
 }
 
+.btn:disabled{
+    cursor: no-drop; /* that red circle comes when you hover on other option after selecting an option */
+}
 
 /*add css to next button*/
 
