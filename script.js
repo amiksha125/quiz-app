@@ -36,7 +36,7 @@ const questions = [
     },
 
     {
-        question : "What is the extension of compiler java classes ?",
+        question : "What is the extension of compiled java classes ?",
 
         answers : [
             { text : ".txt", correct : false},
@@ -136,6 +136,9 @@ function selectAnswer(e){
 
     if(isCorrect){
         selectedBtn.classList.add("correct");
+        //increase the score
+
+        score++;
     } else {
         selectedBtn.classList.add("incorrect");
     }
@@ -160,5 +163,32 @@ function selectAnswer(e){
 
     nextButton.style.display = "block";
 }
+
+function showScore(){
+
+    resetState();
+
+    questionElement.innerHTML = `You Scored ${score} out of ${questions.length} !`;
+
+    nextButton.innerHTML = "Play Again";
+
+    nextButton.style.display = "block";
+}
+function handleNextButton(){
+
+    currentQuestionIndex++;
+    if(currentQuestionIndex < questions.length){
+        showQuestion();
+    } else {
+        showScore();
+    }
+}
+nextButton.addEventListener("click", ()=> {
+    if(currentQuestionIndex < questions.length){
+        handleNextButton();
+    } else {
+        startQuiz();
+    }
+})
 
 startQuiz();
